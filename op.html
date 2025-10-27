@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Single Page Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    nav {
+      background: #0078d7;
+      color: white;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #0078d7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a data-route="home">Home</a>
+    <a data-route="about">About</a>
+    <a data-route="contact">Contact</a>
+  </nav>
+
+  <div class="container" id="app"></div>
+
+  <footer>
+    © 2025 My Single Page App
+  </footer>
+
+  <script>
+    const app = document.getElementById('app');
+
+    const routes = {
+      home: `
+        <h1>Welcome to Our SPA</h1>
+        <p>This is the home page of our simple single-page application.</p>
+      `,
+      about: `
+        <h1>About Us</h1>
+        <p>We are building a simple single-page application using pure HTML, CSS, and JavaScript.</p>
+      `,
+      contact: `
+        <h1>Contact</h1>
+        <p>Have questions? Reach out at <a href="mailto:info@example.com">info@example.com</a>.</p>
+      `
+    };
+
+    // Load route
+    function loadRoute(route) {
+      app.innerHTML = routes[route] || '<h1>404 - Page not found</h1>';
+      window.history.pushState({ route }, '', `#${route}`);
+    }
+
+    // Handle
